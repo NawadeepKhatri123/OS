@@ -1,3 +1,9 @@
+functions
+
+void simpletron.loadfromuser();
+void simpletron.loadfromfile();
+void simpletron.executeprogram();
+void Dumpcore();
 
 int memory[10000]
 int accumulator{0};
