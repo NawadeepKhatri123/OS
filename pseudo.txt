@@ -77,3 +77,7 @@ void dumpcore(){
 
     FOR TOMORROW;
 }
+
+
+
+HELLO JUST WONDERING IF THIS WORKS OR NOT
