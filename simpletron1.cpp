@@ -2,11 +2,17 @@
 #include <cstdlib>   // imports atoi
 #include <string>    // to use a string
 
+
 //functions
 void simpletron_loadfromuser();
 void simpletron_loadfromfile();
 void simpletron_executeprogram();
 void Dumpcore();
+
+const int MEMORY_SIZE = 10000;
+const int PAGE_SIZE = 100;
+const int WORD_MIN = -999999;
+const int WORD_MAX = 999999;
 
 //OPERATION CODES FOR SIMPLETRON V2
 enum codes{
@@ -48,6 +54,7 @@ int main(){
       std::cout<< "*** Do you have a file that conatins your SML program (Y/N) *** \n"<< std::endl;
       simpletron_loadfromuser();
       simpletron_executeprogram();
+
 }
 
 
@@ -71,8 +78,8 @@ void simletron_loadfromuser(){
 }
 
 void simpletron_executeprogram(){
-  bool halt = false;
-  while (!halt){
+  bool halted = false;
+  while (!halted){
       instruction_register = memory[instruction_counter++];
       int opcode = instruction_register / 10000;
       int operand = instruction_register % 10000;
@@ -124,53 +131,66 @@ void simpletron_executeprogram(){
              break;
 
            case SUBTRACTX:
-            accumulator -= memory[index_register];
-            break;
+             accumulator -= memory[index_register];
+             break;
 
            case DIVIDE:
-            std::cout << " Enter a word ";
-            std::cin >> memory[operand];
-            break;
+             if (memory[operand] == 0){
+               Dumpcore();
+               return;
+             }
+             accumulator /= memory[operand];
+             break;
+
            case DIVIDEX:
-            std::cout << " Enter a word ";
-            std::cin >> memory[operand];
-            break;
+             if (memory[operand] == 0){
+               Dumpcore();
+               return;
+             }
+             accumulator /= memory[operand];
+             break;
+
            case MULTIPLY:
-            std::cout << " Enter a word ";
-            std::cin >> memory[operand];
-            break;
+             accumulator *= memory[operand];
+             break;
+
            case MULTIPLYX:
-            std::cout << " Enter a word ";
-            std::cin >> memory[operand];
-            break;
+             accumulator *= memory[index_register];
+             break;
+
            case INC:
-            std::cout << " Enter a word ";
-            std::cin >> memory[operand];
-            break;
+               index_register++;
+               break;
+
            case DEC:
-            std::cout << " Enter a word ";
-            std::cin >> memory[operand];
-            break;
+               index_register--;
+               break;
+
            case BRANCH:
-            std::cout << " Enter a word ";
-            std::cin >> memory[operand];
-            break;
+                instruction_counter = operand;
+                continue;
+
+
            case BRANCHNEG:
-            std::cout << " Enter a word ";
-            std::cin >> memory[operand];
-            break;
+              if (accumulator < 0)
+              instruction_counter = operand;
+              continue;
+
            case BRANCHZERO:
-            std::cout << " Enter a word ";
-            std::cin >> memory[operand];
-            break;
+            if (accumulator == 0)
+              instruction_counter = operand;
+            continue;
+
            case SWAP:
-            std::cout << " Enter a word ";
-            std::cin >> memory[operand];
-            break;
+             std::swap(accumulator, index_register);
+             break;
+
            case HALT:
-            std::cout << " Enter a word ";
-            std::cin >> memory[operand];
-            break;
+             std::cout << "Program halted.\n";
+                    Dumpcore();
+                    halted = true;
+                    break;
+
 
 
        }
@@ -178,3 +198,13 @@ void simpletron_executeprogram(){
 
   }
 }
+
+ void dumpCore() {
+        std::cout << "REGISTERS:\n";
+        std::cout << "Accumulator: " << accumulator << "\n";
+        std::cout << "Instruction Counter: " << instruction_counter << "\n";
+        std::cout << "Index Register: " << index_register << "\n";
+        std::cout << "Instruction Register: " << instruction_register << "\n";
+        std::cout << "\nMEMORY:\n";
+
+ }
