@@ -1,9 +1,11 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
+#include <fstream>
 
 // Function declarations
 void simpletron_loadfromuser();
+void simpletron_readfromuser();
 void simpletron_executeprogram();
 void Dumpcore();
 
@@ -45,23 +47,53 @@ int index_register = 0;        // Contains the instruction
 int instruction_register = 0;  // For stepping through instructions
 
 // Main method
+
 int main() {
+    char ans;                                                                // ans is a initialized char
     std::cout << "*** Welcome to SimpleTron V2! *** \n" << std::endl;
-    std::cout << "*** Do you have a file that contains your SML program (Y/N) *** \n" << std::endl;
-    simpletron_loadfromuser();
+    std::cout << "*** Do you have a file that contains your SML program (Y/N) ***  :";
+    std::cin >> ans;                                                         // stores the response in char
+    if (ans == 'y' || ans == 'Y') {
+        simpletron_readfromuser();                                            // reads from a file if ans = y
+    }else{
+        simpletron_loadfromuser();                                           // read from the console
+    }
     simpletron_executeprogram();
 }
 
+
+// this method reads if the user wishes to procced with a .sml file
+
+void simpletron_readfromuser(){
+  std::string filename;                                    // declare a variable to store filename
+  std::cout<<" Please enter your file name : ";
+  std::cin >> filename;
+
+  std::ifstream MyFile(filename);                       //ifstream apprently reads the file
+
+  if (!MyFile){
+       std::cout<<"File does not exist!\n";            // this if statement is supposed to check whether the file has been opened properly or not
+       return;
+  }
+
+  int count {0};                                      // this count is used for travesing  through the meomory locations
+
+  while (MyFile >> memory[count]){                    // stores the contents of the file in the memory
+    count++;
+  }
+}
+
+// this method is initalized if the user wishes to enter the sml program through his own hands
 void simpletron_loadfromuser() {
     std::string input;
     int address = 0;
     std::cout << "*** Please enter your program one instruction. \n" << std::endl;
 
     while (true) {
-        std::cout << "000" << address << "? "; // Prints the memory location
+        std::cout << "000" << address << "  ?    "; // Prints the memory location
         std::cin >> input;
         if (input == "GO") {
-            break; // Exit the loop if the input is GO
+            break;
         }
 
         int instruction = atoi(input.c_str());
@@ -71,7 +103,7 @@ void simpletron_loadfromuser() {
             memory[address++] = instruction; // Store instruction
 
         } else {
-            std::cout << "Invalid input. Please try again.\n"; // Handle invalid input
+            std::cout << "Invalid input. Please try again.\n";                             // Handle invalid input
         }
     }
 }
@@ -198,11 +230,7 @@ void simpletron_executeprogram() {
                 halted = true;
                 break;
 
-            default:
-                std::cout << "Error: Invalid opcode " << opcode << ".\n";
-                Dumpcore();
-                halted = true;
-                break;
+
         }
     }
 }
@@ -210,12 +238,12 @@ void simpletron_executeprogram() {
 void Dumpcore() {
     std::cout << "REGISTERS:\n";
     std::cout << "Accumulator: " << accumulator << "\n";
-    std::cout << "Instruction Counter: " << instruction_counter << "\n";
+    std::cout << "In struction Counter: " << instruction_counter << "\n";
     std::cout << "Index Register: " << index_register << "\n";
     std::cout << "Instruction Register: " << instruction_register << "\n";
     std::cout << "\nMEMORY:\n";
 
-    for (int i = 0; i < 10; ++i) {
-        std::cout << "000" << i << ": " << memory[i] << "\n";
+    for (int i = 0; i < 30; ++i) {
+        std::cout << "000" << i << ": " << memory[i];
     }
 }
