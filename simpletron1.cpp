@@ -59,20 +59,20 @@ int main(){
 
 
 
-void simletron_loadfromuser(){
-    std::string input;
-    int address {0};
-    std::cout << "*** Please enter your program one instruction. \n " << std::endl;
+void simpletron_loadfromuser(){
+    std::string input;					// input is a string while loading from the user to check whether it's GO or not ?
+    int address {0};					// used for adding to memory location
+    std::cout << "*** Please enter your program one instruction. \n " << std::endl;     // starts the input
     while (true){
-        std::cout << "Enter your instruction : "<<std::endl;
-        std::cin >> input;
+        std::cout << address << "?" << std::endl;
+        std::cin >> input;				// input basically stores the input
         if (input == "GO"){
-          break;
+          break;						// exit the loop if the input is GO
         }
-        if (atoi(input.c_str()) < 999999 && atoi(input.c_str()) > -999999){
-           memory[address++] = atoi(input.c_str());
+        if (atoi(input.c_str()) < 999999 && atoi(input.c_str()) > -999999){  // atoi changes the strings to an int , and the if statement checks whether the number is in the range
+           memory[address++] = atoi(input.c_str());							 // if all the conditions are met then the input is added to the sepcific meomry location
         }else{
-          std::cout <<"Invalid input. Please try again.\n";
+          std::cout <<"Invalid input. Please try again.\n";					// else this
       }
     }
 }
@@ -168,18 +168,15 @@ void simpletron_executeprogram(){
 
            case BRANCH:
                 instruction_counter = operand;
-                continue;
 
 
            case BRANCHNEG:
               if (accumulator < 0)
               instruction_counter = operand;
-              continue;
 
            case BRANCHZERO:
             if (accumulator == 0)
               instruction_counter = operand;
-            continue;
 
            case SWAP:
              std::swap(accumulator, index_register);
@@ -199,7 +196,7 @@ void simpletron_executeprogram(){
   }
 }
 
- void dumpCore() {
+ void DumpCore() {
         std::cout << "REGISTERS:\n";
         std::cout << "Accumulator: " << accumulator << "\n";
         std::cout << "Instruction Counter: " << instruction_counter << "\n";
