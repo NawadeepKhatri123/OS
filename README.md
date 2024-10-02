@@ -2,18 +2,27 @@
 
 SimpleTron V2
 Overview
-SimpleTron V2 is an educational interpreter for a fictional assembly language. It allows users to load and execute programs using a specific set of operations.
+SimpleTron V2 is a simulator interpreter for the programs written in a language called Simpletron Machine language.
+It allows users to load and execute programs using a specific set of operations.
 
 Features
 Load programs from user input or .sml files.
+Memory consists of 10000 words broken up into 100 pages each holding 100 words.
 Execute various operations including arithmetic, branching, and I/O.
 Display register and memory states during execution.
-Usage
-Run the Program:
+
 
 
 Execute the program.
-Input Options:
+
+To execute the program you first have to compile the .cpp code. If you are using a Console you can type in the 
+following command :
+
+$ g++ -o simpletron simpletron.cpp
+
+and after to execute the file or if you already hold the executable file type the following command :
+
+$ ./simpletron.cpp
 
 Indicate if you have a .sml file (Y/N).
 If yes, enter the filename. If no, enter instructions manually and type GO to finish.
