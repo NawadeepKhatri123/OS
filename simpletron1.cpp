@@ -2,6 +2,8 @@
 #include <cstdlib>
 #include <string>
 #include <fstream>
+#include <iomanip>
+
 
 // Function declarations
 void simpletron_loadfromuser();
@@ -12,8 +14,10 @@ void Dumpcore();
 const int MEMORY_SIZE = 10000;
 const int WORD_MIN = -999999;
 const int WORD_MAX = 999999;
+int opcode;
+int operand;
 
-// OPERATION CODES FOR SIMPLETRON V2
+// OPERATION CODES FOR SIMPLETRON V2//set of named constants
 enum codes {
     READ = 10,
     WRITE = 11,
@@ -113,39 +117,39 @@ void simpletron_executeprogram() {
 
     while (!halted) {
         instruction_register = memory[instruction_counter++];
-        int opcode = instruction_register / 10000;
-        int operand = instruction_register % 10000;
+        opcode = instruction_register / 10000;                                // retrives the first 2 digits of the input
+        operand = instruction_register % 10000;                               // retrives the last 2 digits of the input
 
 
 
         switch (opcode) {
             case READ:
                 std::cout << "Enter a word: ";
-                std::cin >> memory[operand];
+                std::cin >> memory[operand];                            // store the input entered in the terminal to memory location specified by the operand
                 break;
 
             case WRITE:
-                std::cout << "Word: " << memory[operand] << std::endl;
+                std::cout << "Word: " << memory[operand] << std::endl;        // displays the output in the console from the memory location specified by the operand
                 break;
 
             case LOAD:
-                accumulator = memory[operand];
+                accumulator = memory[operand];                                // acc holds the value in the memory location specified by the operand
                 break;
 
             case LOADIM:
-                accumulator = operand;
+                accumulator = operand;                                        // acc points at the address of the operand
                 break;
 
             case LOADX:
-                index_register = memory[operand];
+                index_register = memory[operand];                               // the index register holds the value in the memory location specified by the operand
                 break;
 
             case LOADIDX:
-                accumulator = memory[index_register];
+                accumulator = memory[index_register];                            // accumulator holds the value from the memory location specified by the index register
                 break;
 
             case STORE:
-                memory[operand] = accumulator;
+                memory[operand] = accumulator;                                    // memory holds the value of the accumulator in the location specified by the operator
                 break;
 
             case STOREIDX:
@@ -169,7 +173,7 @@ void simpletron_executeprogram() {
                 break;
 
             case DIVIDE:
-                if (memory[operand] == 0) {
+                if (memory[operand] == 0) {                                        // checks if the divisor is 0 if it is 0, then the core is dumped
                     std::cout << "Error: Division by zero.\n";
                     Dumpcore();
                     halted = true;
@@ -180,7 +184,7 @@ void simpletron_executeprogram() {
 
             case DIVIDEX:
                 if (memory[index_register] == 0) {
-                    std::cout << "Error: Division by zero.\n";
+                    std::cout << "Cannot divide by zero.\n";
                     Dumpcore();
                     halted = true;
                 } else {
@@ -197,13 +201,12 @@ void simpletron_executeprogram() {
                 break;
 
             case INC:
-                index_register++;
+                index_register++;                            //increase the index register by one
                 break;
 
             case DEC:
-                index_register--;
+                index_register--;                            //decrease the index register by one
                 break;
-
             case BRANCH:
                 instruction_counter = operand;
                 break;
@@ -229,21 +232,59 @@ void simpletron_executeprogram() {
                 Dumpcore();
                 halted = true;
                 break;
-
+            default:
+                std::cerr << "Error: Invalid operation code " << opcode << ".\n";
+                Dumpcore();
+                exit(1);
 
         }
     }
 }
 
 void Dumpcore() {
-    std::cout << "REGISTERS:\n";
-    std::cout << "Accumulator: " << accumulator << "\n";
-    std::cout << "In struction Counter: " << instruction_counter << "\n";
-    std::cout << "Index Register: " << index_register << "\n";
-    std::cout << "Instruction Register: " << instruction_register << "\n";
-    std::cout << "\nMEMORY:\n";
+    std::cout << "\n*** DUMP CORE ***\n\n";
 
-    for (int i = 0; i < 30; ++i) {
-        std::cout << "000" << i << ": " << memory[i];
+    // Display registers
+    std::cout << "REGISTERS:\n";
+    std::cout << "---------------------------------\n";
+    std::cout << "Accumulator          : " << accumulator << "\n";
+    std::cout << "Instruction Counter   : " << instruction_counter << "\n";
+    std::cout << "Index Register        : " << index_register << "\n";
+    std::cout << "Operation Code        : " << opcode << "\n";
+    std::cout << "Operand               : " << operand << "\n";
+    std::cout << "---------------------------------\n";
+
+    std::cout << "\n\nMEMORY:\n";
+
+    // print coulumn
+    for(int col = 0; col < 10;col++){
+           std::cout<<std::setw(7) << col;
+    }
+    std::cout<<'\n';
+    // Display memory
+    for (int row = 0; row < 10; row++) { // 10 rows for 100 memory locations
+        std::cout << (row * 10); // Row index
+        std::cout << " "; // Space after row index
+
+        for (int col = 0; col < 10; col++) {
+            int index = row * 10 + col;
+
+            // Ensure we only display up to the first 100 locations
+            if (index >= 100) {
+                break;
+            }
+
+            // Format memory value as a zero-padded string
+            std::string value = std::to_string(memory[index]);
+            while (value.length() < 6) { // Ensure it's at least 6 characters long
+                value = "0" + value; // Prepend zeros
+            }
+
+            std::cout << value; // Output the formatted memory value
+            std::cout << " "; // Space between values
+        }
+
+        std::cout << "\n";
     }
 }
+
