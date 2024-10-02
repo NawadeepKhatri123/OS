@@ -94,7 +94,7 @@ void simpletron_loadfromuser() {
     std::cout << "*** Please enter your program one instruction. \n" << std::endl;
 
     while (true) {
-        std::cout << "000" << address << "  ?    "; // Prints the memory location
+        std::cout<<std::setw(6) << std::setfill('0') << address << "  ?    "; // Prints the memory location
         std::cin >> input;
         if (input == "GO") {
             break;
@@ -262,29 +262,16 @@ void Dumpcore() {
     }
     std::cout<<'\n';
     // Display memory
-    for (int row = 0; row < 10; row++) { // 10 rows for 100 memory locations
-        std::cout << (row * 10); // Row index
-        std::cout << " "; // Space after row index
-
+    // Print memory contents
+    for (int row = 0; row < MEMORY_SIZE / 10; row++) {
+        std::cout << std::setw(4) << (row * 10) << " "; // Row index
         for (int col = 0; col < 10; col++) {
             int index = row * 10 + col;
-
-            // Ensure we only display up to the first 100 locations
-            if (index >= 100) {
-                break;
-            }
-
-            // Format memory value as a zero-padded string
-            std::string value = std::to_string(memory[index]);
-            while (value.length() < 6) { // Ensure it's at least 6 characters long
-                value = "0" + value; // Prepend zeros
-            }
-
-            std::cout << value; // Output the formatted memory value
-            std::cout << " "; // Space between values
+            std::cout << std::setw(6) << std::setfill('0') << memory[index];
+        }
+        std::cout << "\n";
         }
 
         std::cout << "\n";
     }
-}
 
