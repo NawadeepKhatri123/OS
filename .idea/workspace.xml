@@ -22,17 +22,50 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c81efa24-b746-4250-8040-2c037e1be938" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/arth" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/arth.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/atio" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/atio.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/query/cache-v2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/query/cmakeFiles-v1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/query/codemodel-v2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/query/toolchains-v1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cache-v2-4fe88aa25c31bbad308f.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-4b476ccd29ad014e7a14.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-eab3803e8c4b1a182f76.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/directory-.-Debug-f5ebdc15457944623624.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2024-09-24T18-01-12-0272.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-78bf6c8137bca6641f9b.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.29.6/CMakeCCompiler.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.29.6/CMakeCXXCompiler.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.29.6/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.29.6/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.29.6/CMakeSystem.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.29.6/CompilerIdC/CMakeCCompilerId.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.29.6/CompilerIdC/a.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.29.6/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.29.6/CompilerIdCXX/a.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeConfigureLog.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cmake.check_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assign1/README.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assign1/first.sml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assign1/first1.sml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assign1/second.sml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assign1/second.sml" beforeDir="false" afterPath="$PROJECT_DIR$/second.sml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assign1/simple" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assign1/simpletron1.cpp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assign1/throaway.sml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/first.sml" beforeDir="false" afterPath="$PROJECT_DIR$/first.sml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first1.sml" beforeDir="false" afterPath="$PROJECT_DIR$/first1.sml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pseudo.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/simple" beforeDir="false" afterPath="$PROJECT_DIR$/simple" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/throaway.sml" beforeDir="false" afterPath="$PROJECT_DIR$/throaway.sml" afterDir="false" />
@@ -122,7 +155,7 @@
       <workItem from="1727750319046" duration="22555000" />
       <workItem from="1727793715517" duration="3917000" />
       <workItem from="1727839283881" duration="679000" />
-      <workItem from="1727880083897" duration="6932000" />
+      <workItem from="1727880083897" duration="7278000" />
     </task>
     <servers />
   </component>
